@@ -1,11 +1,13 @@
 import pandas as pd
 
-print("Analisis de ventas iniciado")
-
+# Lectura del archivo de ventas
 df = pd.read_csv("../ventas.csv")
 
-print(df.head())
-
+# Cálculo de ventas totales
 ventas_totales = (df["cantidad"] * df["precio"]).sum()
 
+# Producto más vendido
+producto_mas_vendido = df.groupby("producto")["cantidad"].sum().idxmax()
+
 print("Ventas totales:", ventas_totales)
+print("Producto más vendido:", producto_mas_vendido)
